@@ -10,7 +10,7 @@ FROM node:18-alpine
 
 WORKDIR /home/app
 COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile --prod
+RUN yarn install --frozen-lockfile --prod --network-timeout 1000000
 COPY --from=builder /home/app/dist/ ./dist/
 
 CMD ["node", "dist/main.js"]
